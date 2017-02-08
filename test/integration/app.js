@@ -1,11 +1,11 @@
 describe('Routes Books', () => {
-  const Books = app.datasource.models.Books,
-    defaultBook = {
-      id: 1,
-      name: 'Default Book'
-    };
+  const Books = app.datasource.models.Books;
+  const defaultBook = {
+    id: 1,
+    name: 'Default Book',
+  };
 
-  beforeEach(done => {
+  beforeEach((done) => {
     Books
       .destroy({ where: {} })
       .then(() => Books.create(defaultBook))
@@ -15,8 +15,7 @@ describe('Routes Books', () => {
   });
 
   describe('Route GET /books', () => {
-    it('should return a list of books', done => {
-
+    it('should return a list of books', (done) => {
       request
         .get('/books')
         .end((err, res) => {
@@ -29,8 +28,7 @@ describe('Routes Books', () => {
   });
 
   describe('Route GET /books/:id', () => {
-    it('should return a book', done => {
-
+    it('should return a book', (done) => {
       request
         .get('/books/1')
         .end((err, res) => {
@@ -43,10 +41,10 @@ describe('Routes Books', () => {
   });
 
   describe('Route POST /books', () => {
-    it('should create a book', done => {
+    it('should create a book', (done) => {
       const newBook = {
         id: 2,
-        name: 'New Book'
+        name: 'New Book',
       };
 
       request
@@ -62,10 +60,10 @@ describe('Routes Books', () => {
   });
 
   describe('Route PUT /books/:id', () => {
-    it('should update a book', done => {
+    it('should update a book', (done) => {
       const updatedBook = {
         id: 1,
-        name: 'Updated Book'
+        name: 'Updated Book',
       };
 
       request
@@ -80,7 +78,7 @@ describe('Routes Books', () => {
   });
 
   describe('Route DELETE /books/:id', () => {
-    it('should delete a book', done => {
+    it('should delete a book', (done) => {
       request
         .delete('/books/1')
         .end((err, res) => {
