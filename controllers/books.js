@@ -1,10 +1,10 @@
 const defaultResponse = (data, statusCode = 200) => ({
   data,
-  statusCode
+  statusCode,
 });
 
 const errorResponse = (message, statusCode = 400) => defaultResponse({
-  error: message
+  error: message,
 }, statusCode);
 
 class BooksController {
@@ -16,6 +16,30 @@ class BooksController {
     return this.Books.findAll({})
       .then(result => defaultResponse(result))
       .catch(error => errorResponse(error.messages));
+  }
+
+  getById(params) {
+    return this.Books.findOne({ where: params })
+      .then(result => defaultResponse(result))
+      .catch(error => errorResponse(error.messages));
+  }
+
+  create(data) {
+    return this.Books.create(data)
+      .then(result => defaultResponse(result, 201))
+      .catch(error => errorResponse(error.messages, 422));
+  }
+
+  update(data, params) {
+    return this.Books.update(data, { where: params })
+      .then(result => defaultResponse(result))
+      .catch(error => errorResponse(error.messages, 422));
+  }
+
+  delete(params) {
+    return this.Books.destroy({ where: params })
+      .then(result => defaultResponse(result, 204))
+      .catch(error => errorResponse(error.messages, 422));
   }
 }
 

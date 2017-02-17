@@ -6,6 +6,7 @@
     "describe": true,
     "expect": true,
     "it": true,
-    "request": true
+    "request": true,
+    "td": true
   }
 }

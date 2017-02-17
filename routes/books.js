@@ -29,4 +29,4 @@ export default (app, Books) => {
         .then(() => res.sendStatus(204))
         .catch(() => res.status(412));
     });
-}
+};
